@@ -1,3 +1,7 @@
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -9,87 +13,57 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Image;
-
 import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
 
-public class introduction {
-	public void scene1(JFrame parentFrame) {
-        JDialog dialog = new JDialog(parentFrame, "NGƯỜI BÍ ẨN ???", true);
+import images.Img_Giver;
 
-		JPanel panel = new JPanel(null);
-		panel.setBounds(21, 10, 880, 359);
-		
-		
-        
-		JLabel lb1 = new JLabel("");
-		lb1.setBackground(new Color(192, 192, 192));
-		lb1.setBounds(10, 10, 870, 219);
-		lb1.setIcon(new ImageIcon(new ImageIcon(introduction.class.getResource("/images/Nhau.jpeg")).getImage().getScaledInstance(lb1.getSize().width, lb1.getSize().height, Image.SCALE_SMOOTH)));
-		panel.add(lb1);
-		
-		JTextArea txtrTrongBui = new JTextArea();
-		txtrTrongBui.setOpaque(false);
-		txtrTrongBui.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtrTrongBui.setText("Trong 1 buổi nhậu , bạn uống 5 lon bia trong 1 quãng thời gian ngắn\r\n\r\nsau đó bạn cảm thấy người say như điếu đổ, bạn ngồi đó, từ từ khép 2 đôi mắt nặng trĩu của bạn lại...");
-		txtrTrongBui.setWrapStyleWord(true);
-		txtrTrongBui.setEditable(false);
-		txtrTrongBui.setLineWrap(true);
-		txtrTrongBui.setBounds(10, 244, 815, 105);
-		panel.add(txtrTrongBui);
-              
-        
-        
-        JButton closeButton = new JButton("ok");
-        closeButton.setBounds(355, 359, 85, 21);
-        closeButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// close the JDialog
-				dialog.dispose(); 	
+public class introduction extends JFrame {
+	
+	// chỉnh ảnh thông qua lớp Img_PathGiver cho tiện
+	@SuppressWarnings("unused")
+	private static Img_Giver imgGiver = new Img_Giver();
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					introduction frame = new introduction();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
-        panel.add(closeButton);
-
-        
-        // Set the content of the dialog to the panel
-        dialog.getContentPane().add(panel);
-
-        // Set dialog properties
-        dialog.setSize(900, 450);
-        dialog.setLocationRelativeTo(parentFrame);
-        dialog.setVisible(true);
-		
 	}
-
-	public void scene2(JFrame parentFrame) {
-        JDialog dialog = new JDialog(parentFrame, "NGƯỜI BÍ ẨN ???", true);
-
-		JPanel panel = new JPanel(null);
-		panel.setBounds(21, 10, 880, 359);
-
-		JLabel lb1 = new JLabel("");
-		lb1.setBackground(new Color(192, 192, 192));
-		lb1.setBounds(10, 10, 870, 219);
-		lb1.setIcon(new ImageIcon(new ImageIcon(introduction.class.getResource("/images/white.jpeg")).getImage().getScaledInstance(lb1.getSize().width, lb1.getSize().height, Image.SCALE_SMOOTH)));
-		panel.add(lb1);
+	
+	
+	public void scene(JFrame parentFrame, JLabel lb_anh, String mota_Frame, String mota, String tieptuc) {
+		JDialog dialog = new JDialog(parentFrame, mota_Frame, true);
 		
-		JTextArea txtrTrongBui = new JTextArea();
-		txtrTrongBui.setOpaque(false);
-		txtrTrongBui.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtrTrongBui.setText("zzz");
-		txtrTrongBui.setEditable(false);
-		txtrTrongBui.setWrapStyleWord(true);
-		txtrTrongBui.setLineWrap(true);
-		txtrTrongBui.setBounds(10, 244, 815, 105);
-		panel.add(txtrTrongBui);
+		JPanel pad = new JPanel(null);
+		pad.setBounds(0, 0, 880, 430);
+
+		lb_anh.setBackground(new Color(192, 192, 192));
+		lb_anh.setBounds(10, 10, 845, 219);
+		pad.add(lb_anh);
+		
+		JTextArea ta_mota = new JTextArea();
+		ta_mota.setOpaque(false);
+		ta_mota.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		ta_mota.setText(mota);
+		ta_mota.setWrapStyleWord(true);
+		ta_mota.setEditable(false);
+		ta_mota.setLineWrap(true);
+		ta_mota.setBounds(10, 244, 815, 105);
+		pad.add(ta_mota);
         
-        JButton closeButton = new JButton("ok");
-        closeButton.setBounds(355, 359, 85, 21);
-        closeButton.addActionListener(new ActionListener() {
+        JButton bt_tieptuc = new JButton(tieptuc);
+        bt_tieptuc.setBounds(373, 359, 85, 21);
+        bt_tieptuc.addActionListener(new ActionListener() {
         	
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -97,360 +71,18 @@ public class introduction {
 				dialog.dispose(); 	
 			}
 		});
-        panel.add(closeButton);
-        
-        // Set the content of the dialog to the panel
-        dialog.getContentPane().add(panel);
-
-        // Set dialog properties
-        dialog.setSize(900, 450);
-        dialog.setLocationRelativeTo(parentFrame);
-        dialog.setVisible(true);
-	}
-
-	public void scene3(JFrame parentFrame) {
-        JDialog dialog = new JDialog(parentFrame, "NGƯỜI BÍ ẨN ???", true);
-
-		JPanel panel = new JPanel(null);
-		panel.setBounds(21, 10, 880, 359);
-
-		JLabel lb1 = new JLabel("");
-		lb1.setBackground(new Color(192, 192, 192));
-		lb1.setBounds(10, 10, 870, 219);
-		lb1.setIcon(new ImageIcon(new ImageIcon(introduction.class.getResource("/images/white.jpeg")).getImage().getScaledInstance(lb1.getSize().width, lb1.getSize().height, Image.SCALE_SMOOTH)));
-		panel.add(lb1);
+        pad.add(bt_tieptuc);
 		
-		JTextArea txtrTrongBui = new JTextArea();
-		txtrTrongBui.setOpaque(false);
-		txtrTrongBui.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtrTrongBui.setText("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-		txtrTrongBui.setWrapStyleWord(true);
-		txtrTrongBui.setEditable(false);
-		txtrTrongBui.setLineWrap(true);
-		txtrTrongBui.setBounds(10, 244, 815, 105);
-		panel.add(txtrTrongBui);
-        
-        JButton closeButton = new JButton("ok");
-        closeButton.setBounds(355, 359, 85, 21);
-        closeButton.addActionListener(new ActionListener() {
-        	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// close the JDialog
-				dialog.dispose(); 	
-			}
-		});
-        panel.add(closeButton);
-        
-        // Set the content of the dialog to the panel
-        dialog.getContentPane().add(panel);
-
-        // Set dialog properties
-        dialog.setSize(900, 450);
-        dialog.setLocationRelativeTo(parentFrame);
-        dialog.setVisible(true);
-	}
-
-	public void scene4(JFrame parentFrame) {
-        JDialog dialog = new JDialog(parentFrame, "NGƯỜI BÍ ẨN ???", true);
-
-		JPanel panel = new JPanel(null);
-		panel.setBounds(21, 10, 880, 359);
-
-		JLabel lb1 = new JLabel("");
-		lb1.setBackground(new Color(192, 192, 192));
-		lb1.setBounds(10, 10, 870, 219);
-		lb1.setIcon(new ImageIcon(new ImageIcon(introduction.class.getResource("/images/white.jpeg")).getImage().getScaledInstance(lb1.getSize().width, lb1.getSize().height, Image.SCALE_SMOOTH)));
-		panel.add(lb1);
 		
-		JTextArea txtrTrongBui = new JTextArea();
-		txtrTrongBui.setOpaque(false);
-		txtrTrongBui.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtrTrongBui.setText("zzzzz");
-		txtrTrongBui.setWrapStyleWord(true);
-		txtrTrongBui.setEditable(false);
-		txtrTrongBui.setLineWrap(true);
-		txtrTrongBui.setBounds(10, 244, 815, 105);
-		panel.add(txtrTrongBui);
-        
-        JButton closeButton = new JButton("ok");
-        closeButton.setBounds(355, 359, 85, 21);
-        closeButton.addActionListener(new ActionListener() {
-        	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// close the JDialog
-				dialog.dispose(); 	
-			}
-		});
-        panel.add(closeButton);
-        
         // Set the content of the dialog to the panel
-        dialog.getContentPane().add(panel);
+        dialog.getContentPane().add(pad);
 
         // Set dialog properties
-        dialog.setSize(900, 450);
+        dialog.setSize(880, 450);
         dialog.setLocationRelativeTo(parentFrame);
         dialog.setVisible(true);
 	}
 	
-	public void scene5(JFrame parentFrame) {
-        JDialog dialog = new JDialog(parentFrame, "NGƯỜI BÍ ẨN ???", true);
-
-		JPanel panel = new JPanel(null);
-		panel.setBounds(21, 10, 880, 359);
-
-		JLabel lb1 = new JLabel("");
-		lb1.setBackground(new Color(192, 192, 192));
-		lb1.setBounds(10, 10, 870, 219);
-		lb1.setIcon(new ImageIcon(new ImageIcon(introduction.class.getResource("/images/TheDealer.jpg")).getImage().getScaledInstance(lb1.getSize().width, lb1.getSize().height, Image.SCALE_SMOOTH)));
-		panel.add(lb1);
-		
-		JTextArea txtrTrongBui = new JTextArea();
-		txtrTrongBui.setOpaque(false);
-		txtrTrongBui.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtrTrongBui.setText("BÙM");
-		txtrTrongBui.setWrapStyleWord(true);
-		txtrTrongBui.setEditable(false);
-		txtrTrongBui.setLineWrap(true);
-		txtrTrongBui.setBounds(10, 244, 815, 105);
-		panel.add(txtrTrongBui);
-        
-        JButton closeButton = new JButton("ok");
-        closeButton.setBounds(355, 359, 85, 21);
-        closeButton.addActionListener(new ActionListener() {
-        	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// close the JDialog
-				dialog.dispose(); 	
-			}
-		});
-        panel.add(closeButton);
-        
-        // Set the content of the dialog to the panel
-        dialog.getContentPane().add(panel);
-
-        // Set dialog properties
-        dialog.setSize(900, 450);
-        dialog.setLocationRelativeTo(parentFrame);
-        dialog.setVisible(true);
-	}
-	
-	public void scene6(JFrame parentFrame) {
-        JDialog dialog = new JDialog(parentFrame, "NGƯỜI BÍ ẨN ???", true);
-
-		JPanel panel = new JPanel(null);
-		panel.setBounds(21, 10, 880, 359);
-
-		JLabel lb1 = new JLabel("");
-		lb1.setBackground(new Color(192, 192, 192));
-		lb1.setBounds(10, 10, 870, 219);
-		lb1.setIcon(new ImageIcon(new ImageIcon(introduction.class.getResource("/images/TheDealer.jpg")).getImage().getScaledInstance(lb1.getSize().width, lb1.getSize().height, Image.SCALE_SMOOTH)));
-		panel.add(lb1);
-		
-		JTextArea txtrTrongBui = new JTextArea();
-		txtrTrongBui.setOpaque(false);
-		txtrTrongBui.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtrTrongBui.setText("Bạn tỉnh giấc!");
-		txtrTrongBui.setWrapStyleWord(true);
-		txtrTrongBui.setEditable(false);
-		txtrTrongBui.setLineWrap(true);
-		txtrTrongBui.setBounds(10, 244, 815, 105);
-		panel.add(txtrTrongBui);
-        
-        JButton closeButton = new JButton("ok");
-        closeButton.setBounds(355, 359, 85, 21);
-        closeButton.addActionListener(new ActionListener() {
-        	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// close the JDialog
-				dialog.dispose(); 	
-			}
-		});
-        panel.add(closeButton);
-        
-        // Set the content of the dialog to the panel
-        dialog.getContentPane().add(panel);
-
-        // Set dialog properties
-        dialog.setSize(900, 450);
-        dialog.setLocationRelativeTo(parentFrame);
-        dialog.setVisible(true);
-	}
-	
-	public void scene7(JFrame parentFrame) {
-        JDialog dialog = new JDialog(parentFrame, "NGƯỜI BÍ ẨN ???", true);
-
-		JPanel panel = new JPanel(null);
-		panel.setBounds(21, 10, 880, 359);
-
-		JLabel lb1 = new JLabel("");
-		lb1.setBackground(new Color(192, 192, 192));
-		lb1.setBounds(10, 10, 870, 219);
-		lb1.setIcon(new ImageIcon(new ImageIcon(introduction.class.getResource("/images/TheDealer.jpg")).getImage().getScaledInstance(lb1.getSize().width, lb1.getSize().height, Image.SCALE_SMOOTH)));
-		panel.add(lb1);
-		
-		JTextArea txtrTrongBui = new JTextArea();
-		txtrTrongBui.setOpaque(false);
-		txtrTrongBui.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtrTrongBui.setText("NGƯỜI BÍ ẨN: chà ngươi đã tỉnh dậy rồi sao!.");
-		txtrTrongBui.setWrapStyleWord(true);
-		txtrTrongBui.setEditable(false);
-		txtrTrongBui.setLineWrap(true);
-		txtrTrongBui.setBounds(10, 244, 815, 105);
-		panel.add(txtrTrongBui);
-        
-        JButton closeButton = new JButton("ok");
-        closeButton.setBounds(355, 359, 85, 21);
-        closeButton.addActionListener(new ActionListener() {
-        	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// close the JDialog
-				dialog.dispose(); 	
-			}
-		});
-        panel.add(closeButton);
-        
-        // Set the content of the dialog to the panel
-        dialog.getContentPane().add(panel);
-
-        // Set dialog properties
-        dialog.setSize(900, 450);
-        dialog.setLocationRelativeTo(parentFrame);
-        dialog.setVisible(true);
-	}
-	
-	public void scene8(JFrame parentFrame) {
-        JDialog dialog = new JDialog(parentFrame, "NGƯỜI BÍ ẨN ???", true);
-
-		JPanel panel = new JPanel(null);
-		panel.setBounds(21, 10, 880, 359);
-
-		JLabel lb1 = new JLabel("");
-		lb1.setBackground(new Color(192, 192, 192));
-		lb1.setBounds(10, 10, 870, 219);
-		lb1.setIcon(new ImageIcon(new ImageIcon(introduction.class.getResource("/images/TheDealer.jpg")).getImage().getScaledInstance(lb1.getSize().width, lb1.getSize().height, Image.SCALE_SMOOTH)));
-		panel.add(lb1);
-		
-		JTextArea txtrTrongBui = new JTextArea();
-		txtrTrongBui.setOpaque(false);
-		txtrTrongBui.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtrTrongBui.setText("Bạn: Ngươi, NGƯƠI LÀ AI!");
-		txtrTrongBui.setWrapStyleWord(true);
-		txtrTrongBui.setLineWrap(true);
-		txtrTrongBui.setEditable(false);
-		txtrTrongBui.setBounds(10, 244, 815, 105);
-		panel.add(txtrTrongBui);
-        
-        JButton closeButton = new JButton("ok");
-        closeButton.setBounds(355, 359, 85, 21);
-        closeButton.addActionListener(new ActionListener() {
-        	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// close the JDialog
-				dialog.dispose(); 	
-			}
-		});
-        panel.add(closeButton);
-        
-        // Set the content of the dialog to the panel
-        dialog.getContentPane().add(panel);
-
-        // Set dialog properties
-        dialog.setSize(900, 450);
-        dialog.setLocationRelativeTo(parentFrame);
-        dialog.setVisible(true);
-	}
-	
-	public void scene9(JFrame parentFrame) {
-        JDialog dialog = new JDialog(parentFrame, "NGƯỜI BÍ ẨN ???", true);
-
-		JPanel panel = new JPanel(null);
-		panel.setBounds(21, 10, 880, 359);
-
-		JLabel lb1 = new JLabel("");
-		lb1.setBackground(new Color(192, 192, 192));
-		lb1.setBounds(10, 10, 870, 219);
-		lb1.setIcon(new ImageIcon(new ImageIcon(introduction.class.getResource("/images/TheDealer.jpg")).getImage().getScaledInstance(lb1.getSize().width, lb1.getSize().height, Image.SCALE_SMOOTH)));
-		panel.add(lb1);
-		
-		JTextArea txtrTrongBui = new JTextArea();
-		txtrTrongBui.setOpaque(false);
-		txtrTrongBui.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtrTrongBui.setText("NGƯỜI BÍ ẨN: ta là ai không quan trọng , điều quan trọng ở đây là NGƯƠI, mắc nợ ta 9 kiếp rồi mà chưa chịu trả");
-		txtrTrongBui.setWrapStyleWord(true);
-		txtrTrongBui.setLineWrap(true);
-		txtrTrongBui.setEditable(false);
-		txtrTrongBui.setBounds(10, 244, 815, 105);
-		panel.add(txtrTrongBui);
-        
-        JButton closeButton = new JButton("ok");
-        closeButton.setBounds(355, 359, 85, 21);
-        closeButton.addActionListener(new ActionListener() {
-        	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// close the JDialog
-				dialog.dispose(); 	
-			}
-		});
-        panel.add(closeButton);
-        
-        // Set the content of the dialog to the panel
-        dialog.getContentPane().add(panel);
-
-        // Set dialog properties
-        dialog.setSize(900, 450);
-        dialog.setLocationRelativeTo(parentFrame);
-        dialog.setVisible(true);
-	}
-	
-	public void scene10(JFrame parentFrame) {
-        JDialog dialog = new JDialog(parentFrame, "NGƯỜI BÍ ẨN ???", true);
-
-		JPanel panel = new JPanel(null);
-		panel.setBounds(21, 10, 880, 359);
-
-		JLabel lb1 = new JLabel("");
-		lb1.setBackground(new Color(192, 192, 192));
-		lb1.setBounds(10, 10, 870, 219);
-		lb1.setIcon(new ImageIcon(new ImageIcon(introduction.class.getResource("/images/TheDealer.jpg")).getImage().getScaledInstance(lb1.getSize().width, lb1.getSize().height, Image.SCALE_SMOOTH)));
-		panel.add(lb1);
-		
-		JTextArea txtrTrongBui = new JTextArea();
-		txtrTrongBui.setOpaque(false);
-		txtrTrongBui.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtrTrongBui.setText("Bạn: hả?");
-		txtrTrongBui.setWrapStyleWord(true);
-		txtrTrongBui.setLineWrap(true);
-		txtrTrongBui.setEditable(false);
-		txtrTrongBui.setBounds(10, 244, 815, 105);
-		panel.add(txtrTrongBui);
-        
-        JButton closeButton = new JButton("ok");
-        closeButton.setBounds(355, 359, 85, 21);
-        closeButton.addActionListener(new ActionListener() {
-        	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// close the JDialog
-				dialog.dispose(); 	
-			}
-		});
-        panel.add(closeButton);
-        
-        // Set the content of the dialog to the panel
-        dialog.getContentPane().add(panel);
-
-        // Set dialog properties
-        dialog.setSize(900, 450);
-        dialog.setLocationRelativeTo(parentFrame);
-        dialog.setVisible(true);
-	}
 	
 	public void scene99(JFrame parentFrame) {
         JDialog dialog = new JDialog(parentFrame, "", true);
@@ -458,18 +90,13 @@ public class introduction {
 		JPanel panel = new JPanel(null);
 		panel.setBounds(0, 0, 1920, 1080);
 
-		try {
-			String sc = (new File(".").getCanonicalPath()) + "/src/images/anh1.jpg";
-			
-			JLabel lb3 = new JLabel("");
-			lb3.setBounds(0, 0, 1920, 1080);
-			lb3.setIcon(new ImageIcon(new ImageIcon(sc).getImage().getScaledInstance(lb3.getSize().width, lb3.getSize().height, Image.SCALE_SMOOTH)));
+		
+		JLabel lb3 = new JLabel("");
+		lb3.setBounds(0, 0, 1920, 1080);
+		lb3.setIcon(new ImageIcon(new ImageIcon(imgGiver.getClass().getResource("anh1.jpg").getPath()).getImage().getScaledInstance(lb3.getSize().width, lb3.getSize().height, Image.SCALE_SMOOTH)));
 
-			panel.add(lb3);
+		panel.add(lb3);
 			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
         
         // Set the content of the dialog to the panel
         dialog.getContentPane().add(panel);
@@ -480,218 +107,61 @@ public class introduction {
         dialog.setVisible(true);
 	}
 	
-	public void scene11(JFrame parentFrame) {
-        JDialog dialog = new JDialog(parentFrame, "NGƯỜI BÍ ẨN ???", true);
 
-		JPanel panel = new JPanel(null);
-		panel.setBounds(21, 10, 880, 359);
+	public introduction() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 880, 450);
+		setResizable(false);
+		contentPane = new JPanel(null);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		JLabel lb1 = new JLabel("");
-		lb1.setBackground(new Color(192, 192, 192));
-		lb1.setBounds(10, 10, 870, 219);
-		lb1.setIcon(new ImageIcon(new ImageIcon(introduction.class.getResource("/images/TheDealer.jpg")).getImage().getScaledInstance(lb1.getSize().width, lb1.getSize().height, Image.SCALE_SMOOTH)));
-		panel.add(lb1);
+		// nếu muốn xem cấu trúc như thế nào thì gỡ "/* ... */, sử dụng GuiBuilder hoặc Netbean.
 		
-		JTextArea txtrTrongBui = new JTextArea();
-		txtrTrongBui.setOpaque(false);
-		txtrTrongBui.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtrTrongBui.setText("NGƯỜI BÍ ẨN: bây giờ ta sẽ cho ngươi 10$, đô la USA xịn xò con bò luôn !");
-		txtrTrongBui.setWrapStyleWord(true);
-		txtrTrongBui.setEditable(false);
-		txtrTrongBui.setLineWrap(true);
-		txtrTrongBui.setBounds(10, 244, 815, 105);
-		panel.add(txtrTrongBui);
+		/*
+		// 4 dòng tiếp theo là tạo và chỉnh trước ở trong Home.java
+		String mota = "";
+		String tieptuc = "";
+		JLabel lb_anh = new JLabel("");
+		lb_anh.setBounds(10, 10, 845, 219);
+		//
+		
+		
+		JPanel pad = new JPanel(null);
+		pad.setBounds(0, 0, 880, 430);
+
+		lb_anh.setBackground(new Color(192, 192, 192));
+		lb_anh.setOpaque(true);		// phụ họa
+		lb_anh.setBounds(10, 10, 845, 219);
+		// lb_anh.setIcon đã được chỉnh trước trong trường hợp này rồi!.
+		pad.add(lb_anh);
+		
+		JTextArea ta_mota = new JTextArea();
+		ta_mota.setOpaque(false);
+		ta_mota.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		ta_mota.setText(mota);
+		ta_mota.setWrapStyleWord(true);
+		ta_mota.setEditable(false);
+		ta_mota.setLineWrap(true);
+		ta_mota.setBounds(10, 244, 815, 105);
+		pad.add(ta_mota);
         
-        JButton closeButton = new JButton("ok");
-        closeButton.setBounds(355, 359, 85, 21);
-        closeButton.addActionListener(new ActionListener() {
+        JButton bt_tieptuc = new JButton(tieptuc);
+        bt_tieptuc.setBounds(373, 359, 85, 21);
+        bt_tieptuc.addActionListener(new ActionListener() {
         	
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// close the JDialog
-				dialog.dispose(); 	
+//				dialog.dispose(); 	
 			}
 		});
-        panel.add(closeButton);
+        pad.add(bt_tieptuc);
         
-        // Set the content of the dialog to the panel
-        dialog.getContentPane().add(panel);
+        contentPane.add(pad);
 
-        // Set dialog properties
-        dialog.setSize(900, 450);
-        dialog.setLocationRelativeTo(parentFrame);
-        dialog.setVisible(true);
+        */
+        
+		setContentPane(contentPane);
 	}
-	
-	public void scene12(JFrame parentFrame) {
-        JDialog dialog = new JDialog(parentFrame, "NGƯỜI BÍ ẨN ???", true);
 
-		JPanel panel = new JPanel(null);
-		panel.setBounds(21, 10, 880, 359);
-
-		JLabel lb1 = new JLabel("");
-		lb1.setBackground(new Color(192, 192, 192));
-		lb1.setBounds(10, 10, 870, 219);
-		lb1.setIcon(new ImageIcon(new ImageIcon(introduction.class.getResource("/images/TheDealer.jpg")).getImage().getScaledInstance(lb1.getSize().width, lb1.getSize().height, Image.SCALE_SMOOTH)));
-		panel.add(lb1);
-		
-		JTextArea txtrTrongBui = new JTextArea();
-		txtrTrongBui.setOpaque(false);
-		txtrTrongBui.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtrTrongBui.setText("Bạn: Thiệt không?");
-		txtrTrongBui.setWrapStyleWord(true);
-		txtrTrongBui.setLineWrap(true);
-		txtrTrongBui.setEditable(false);
-		txtrTrongBui.setBounds(10, 244, 815, 105);
-		panel.add(txtrTrongBui);
-        
-        JButton closeButton = new JButton("ok");
-        closeButton.setBounds(355, 359, 85, 21);
-        closeButton.addActionListener(new ActionListener() {
-        	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// close the JDialog
-				dialog.dispose(); 	
-			}
-		});
-        panel.add(closeButton);
-        
-        // Set the content of the dialog to the panel
-        dialog.getContentPane().add(panel);
-
-        // Set dialog properties
-        dialog.setSize(900, 450);
-        dialog.setLocationRelativeTo(parentFrame);
-        dialog.setVisible(true);
-	}
-	
-	public void scene13(JFrame parentFrame) {
-        JDialog dialog = new JDialog(parentFrame, "NGƯỜI BÍ ẨN ???", true);
-
-		JPanel panel = new JPanel(null);
-		panel.setBounds(21, 10, 880, 359);
-
-		JLabel lb1 = new JLabel("");
-		lb1.setBackground(new Color(192, 192, 192));
-		lb1.setBounds(10, 10, 870, 219);
-		lb1.setIcon(new ImageIcon(new ImageIcon(introduction.class.getResource("/images/TheDealer.jpg")).getImage().getScaledInstance(lb1.getSize().width, lb1.getSize().height, Image.SCALE_SMOOTH)));
-		panel.add(lb1);
-		
-		JTextArea txtrTrongBui = new JTextArea();
-		txtrTrongBui.setOpaque(false);
-		txtrTrongBui.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtrTrongBui.setText("NGƯỜI BÍ ẨN: thiệt, đổi lại ngươi sẽ nợ ta 10000$ !!!");
-		txtrTrongBui.setWrapStyleWord(true);
-		txtrTrongBui.setEditable(false);
-		txtrTrongBui.setLineWrap(true);
-		txtrTrongBui.setBounds(10, 244, 815, 105);
-		panel.add(txtrTrongBui);
-        
-        JButton closeButton = new JButton("ok");
-        closeButton.setBounds(355, 359, 85, 21);
-        closeButton.addActionListener(new ActionListener() {
-        	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// close the JDialog
-				dialog.dispose(); 	
-			}
-		});
-        panel.add(closeButton);
-        
-        // Set the content of the dialog to the panel
-        dialog.getContentPane().add(panel);
-
-        // Set dialog properties
-        dialog.setSize(900, 450);
-        dialog.setLocationRelativeTo(parentFrame);
-        dialog.setVisible(true);
-	}
-	
-	public void scene14(JFrame parentFrame) {
-        JDialog dialog = new JDialog(parentFrame, "NGƯỜI BÍ ẨN ???", true);
-
-		JPanel panel = new JPanel(null);
-		panel.setBounds(21, 10, 880, 359);
-
-		JLabel lb1 = new JLabel("");
-		lb1.setBackground(new Color(192, 192, 192));
-		lb1.setBounds(10, 10, 870, 219);
-		lb1.setIcon(new ImageIcon(new ImageIcon(introduction.class.getResource("/images/TheDealer.jpg")).getImage().getScaledInstance(lb1.getSize().width, lb1.getSize().height, Image.SCALE_SMOOTH)));
-		panel.add(lb1);
-		
-		JTextArea txtrTrongBui = new JTextArea();
-		txtrTrongBui.setOpaque(false);
-		txtrTrongBui.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtrTrongBui.setText("Bạn: NANI !!!");
-		txtrTrongBui.setWrapStyleWord(true);
-		txtrTrongBui.setLineWrap(true);
-		txtrTrongBui.setEditable(false);
-		txtrTrongBui.setBounds(10, 244, 815, 105);
-		panel.add(txtrTrongBui);
-        
-        JButton closeButton = new JButton("ok");
-        closeButton.setBounds(355, 359, 85, 21);
-        closeButton.addActionListener(new ActionListener() {
-        	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// close the JDialog
-				dialog.dispose(); 	
-			}
-		});
-        panel.add(closeButton);
-        
-        // Set the content of the dialog to the panel
-        dialog.getContentPane().add(panel);
-
-        // Set dialog properties
-        dialog.setSize(900, 450);
-        dialog.setLocationRelativeTo(parentFrame);
-        dialog.setVisible(true);
-	}
-	
-	public void scene15(JFrame parentFrame) {
-        JDialog dialog = new JDialog(parentFrame, "NGƯỜI BÍ ẨN ???", true);
-
-		JPanel panel = new JPanel(null);
-		panel.setBounds(21, 10, 880, 359);
-
-		JLabel lb1 = new JLabel("");
-		lb1.setBackground(new Color(192, 192, 192));
-		lb1.setBounds(10, 10, 870, 219);
-		lb1.setIcon(new ImageIcon(new ImageIcon(introduction.class.getResource("/images/TheDealer.jpg")).getImage().getScaledInstance(lb1.getSize().width, lb1.getSize().height, Image.SCALE_SMOOTH)));
-		panel.add(lb1);
-		
-		JTextArea txtrTrongBui = new JTextArea();
-		txtrTrongBui.setOpaque(false);
-		txtrTrongBui.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtrTrongBui.setText("NGƯỜI BÍ ẨN: Được rồi, bây giờ hãy ĐI RA NGOÀI ĐỒNG VÀ LÀM VIỆC CHO TA, ta ngồi chờ ở trong này, ta giao nhiệm vụ cho ngươi là kiếm 10000$ và trả lại cho ta :D");
-		txtrTrongBui.setWrapStyleWord(true);
-		txtrTrongBui.setLineWrap(true);
-		txtrTrongBui.setEditable(false);
-		txtrTrongBui.setBounds(10, 244, 815, 105);
-		panel.add(txtrTrongBui);
-        
-        JButton closeButton = new JButton("ok");
-        closeButton.setBounds(355, 359, 85, 21);
-        closeButton.addActionListener(new ActionListener() {
-        	
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// close the JDialog
-				dialog.dispose(); 	
-			}
-		});
-        panel.add(closeButton);
-        
-        // Set the content of the dialog to the panel
-        dialog.getContentPane().add(panel);
-
-        // Set dialog properties
-        dialog.setSize(900, 450);
-        dialog.setLocationRelativeTo(parentFrame);
-        dialog.setVisible(true);
-	}
 }
