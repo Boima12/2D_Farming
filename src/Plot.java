@@ -15,8 +15,8 @@ public class Plot {
 	private boolean IsRaising = false;
 	private boolean IsGrown = false;
 	
-	private String imgPath1;
-	private String imgPath2;
+	private JLabel lbHolder1;
+	private JLabel lbHolder2;
 	private int thoiGianTrong;
 	private long tienVon;
 	private long tienThuHoach;
@@ -27,6 +27,14 @@ public class Plot {
 		this.home_Tien = lb3;
 		this.Plot_Up = lb1;
 		this.Plot_Description = lb2;
+		
+		// chuẩn bị lbHolder1 và lbHolder2 để lưu trữ 2 cái ảnh cây non và cây trưởng thành tạm thời
+		lbHolder1 = new JLabel();
+		lbHolder1.setBounds(10, 10, 178, 128);
+		
+		lbHolder2 = new JLabel();
+		lbHolder2.setBounds(10, 10, 178, 128);
+
 		
 		MouseAdapter1 MA1 = new MouseAdapter1(); 
 		Plot_Up.addMouseListener(MA1);
@@ -39,7 +47,7 @@ public class Plot {
 			// Trồng cây
 			if (IsRaising == false) {
 				Plot_Crop pc = new Plot_Crop(plot, home);
-				pc.Crop_TimKiemThongTin();
+				pc.Crop_TimKiemThongTin(lbHolder1, lbHolder2);
 				
 				// Nếu không có đủ tiền
 				if (home.getTienHienTai() < tienVon) {
@@ -51,7 +59,9 @@ public class Plot {
 				IsRaising = true;
 				home.setTienHienTai(home.getTienHienTai() - tienVon);
 				home_Tien.setText("Tiền của bạn: " + home.getTienHienTai() + "$");
-				Plot_Up.setIcon(new ImageIcon(new ImageIcon(imgPath1).getImage().getScaledInstance(Plot_Up.getSize().width, Plot_Up.getSize().height, Image.SCALE_SMOOTH)));
+				
+				
+				Plot_Up.setIcon(new ImageIcon( ((ImageIcon) lbHolder1.getIcon()).getImage().getScaledInstance(Plot_Up.getSize().width, Plot_Up.getSize().height, Image.SCALE_SMOOTH)));
 				
 				Thread thread = new Thread(new Runnable() {
 					
@@ -68,7 +78,7 @@ public class Plot {
 							
 							// Cây lớn, sẵn sàng để thu hoạch
 							IsGrown = true;
-							Plot_Up.setIcon(new ImageIcon(new ImageIcon(imgPath2).getImage().getScaledInstance(Plot_Up.getSize().width, Plot_Up.getSize().height, Image.SCALE_SMOOTH)));
+							Plot_Up.setIcon(new ImageIcon(((ImageIcon) lbHolder2.getIcon()).getImage().getScaledInstance(Plot_Up.getSize().width, Plot_Up.getSize().height, Image.SCALE_SMOOTH)));
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
@@ -96,22 +106,7 @@ public class Plot {
 			}			
 		}
 	}
-	
-	public String getImgPath1() {
-		return imgPath1;
-	}
-
-	public void setImgPath1(String imgPath1) {
-		this.imgPath1 = imgPath1;
-	}
-
-	public String getImgPath2() {
-		return imgPath2;
-	}
-
-	public void setImgPath2(String imgPath2) {
-		this.imgPath2 = imgPath2;
-	}
+		
 
 	public int getThoiGianTrong() {
 		return thoiGianTrong;
